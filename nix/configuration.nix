@@ -18,7 +18,7 @@ in {
   # NTFS Support
   boot.supportedFilesystems = [ "ntfs" ];
 
-  # Bootloader
+  # bootloader
   # boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.enable = lib.mkForce false; # Lanzaboote replaces systemd-boot so force it off
   boot.lanzaboote = {
@@ -34,17 +34,12 @@ in {
   #  boot.loader.grub.efiSupport = true;
   #  boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
+  networking.hostName = "snehasish-nixos"; # hostname (using separated - only)
+  
+  # enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
+  # time zone.
   time.timeZone = "Asia/Kolkata";
 
   # Select internationalisation properties.
@@ -65,9 +60,19 @@ in {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.displayManager = {
-      sddm.enable = true;
       defaultSession = "hyprland";
   };
+
+  #services.postgresql = {
+  #  enable = true;
+  #  package = pkgs.postgresql_17_jit;
+  #  ensureDatabases = [ "ecomm" ];
+  #  authentication = ''
+  #    local   all             all                                     trust
+  #    host    all             all             127.0.0.1/32            md5
+  #    host    all             all             ::1/128                 md5
+  #  '';
+  #};
 
   # Hyprland
   programs.hyprland = {
@@ -100,27 +105,45 @@ in {
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # defining users
   users.users.snehasish = {
     isNormalUser = true;
     description = "snehasish";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel"  "docker" "dialout" "uucp" ];
     packages = with pkgs; [
       brave
       discord
       spotify
     ];
+    shell = pkgs.zsh;
+  };
+
+  users.defaultUserShell = pkgs.zsh;
+
+  # Enable zsh
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    enableBashCompletion = true;
+    autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+    histSize = 1000;
+
+    shellAliases = {
+      # ...
+    };
+
+    promptInit = ''
+      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+    '';
+
+    #ohMyZsh = {
+      #enable = true;
+      #plugins = [ "git" "dirhistory" "history" ];
+      #theme="powerlevel10k/powerlevel10k";
+    #};
   };
 
   # Install firefox.
@@ -142,21 +165,35 @@ in {
 
     # wallpaper
     swww
+    sddm-astronaut # for lockscreen
 
     # terminal
     kitty
 
+    # shell
+    zsh
+    oh-my-zsh
+    zsh-powerlevel10k
+    meslo-lgs-nf # nerd font for powerlevel10k
+
     # utils
     git
     gh
-    zsh
+
     nodejs_24
-    vscode
-    neovim
+    jdk # java dev kit for android app dev
+    android-tools
+
+    pnpm
     fastfetch
     networkmanagerapplet
     btop
-    
+
+    # editors
+    neovim
+    vscode
+    arduino
+
     # screen (snip + clip)
     grim # screenshot
     wf-recorder # clipping
@@ -165,6 +202,19 @@ in {
     # clipboard
     wl-clipboard
     cliphist
+
+    # notification
+    libnotify
+    swaynotificationcenter
+    jq
+    eww
+
+    # sound and audio
+    pavucontrol
+    playerctl
+
+    # spicetify
+    spicetify-cli
 
     # c tooling
     gcc
@@ -175,6 +225,15 @@ in {
     catppuccin-cursors
     papirus-icon-theme
     nwg-look
+    brightnessctl
+
+    # others
+    cbonsai
+    cowsay
+    pipes
+
+    # anime
+    ani-cli
   ];
 
   # fonts
@@ -183,6 +242,9 @@ in {
     noto-fonts
     noto-fonts-emoji
   ];
+
+  # Docker
+  virtualisation.docker.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -196,6 +258,10 @@ in {
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
+
+  # enable bluetooth
+  services.blueman.enable = true;
+  hardware.bluetooth.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
