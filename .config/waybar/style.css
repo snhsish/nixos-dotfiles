@@ -6,7 +6,7 @@
 }
 
 window#waybar {
-  background: rgba(34, 36, 54, 0.6);
+  background: transparent;
 }
 
 window#waybar.hidden {
@@ -21,8 +21,8 @@ window#waybar.hidden {
 #temperature,
 #idle_inhibitor,
 #pulseaudio,
-#battery {
-  color: #161320;
+#battery,
+#network {
   margin-top: 6px;
   margin-bottom: 6px;
   padding-left: 10px;
@@ -31,15 +31,16 @@ window#waybar.hidden {
 }
 
 #custom-nixos {
-  background-color: #5277C3;
-  color: white;
+  background-color: #404040;
+  /*#5376C3*/
+  color: #a5b6ff;
   font-size: 20px;
   padding-right: 15px;
 }
 
 #custom-nixos,
 #cpu,
-#idle_inhibitor {
+#network {
   margin-left: 5px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -53,53 +54,48 @@ window#waybar.hidden {
 }
 
 #clock {
-  background: #ABE9B3;
+  background: #c9c9c9;
+  color: #000000;
 }
 
 #cpu {
-  background: #96CDFB;
+  background: #404040;
+  color: #ffffff;
 }
 
 #memory {
-  background: #DDB6F2;
+  background: #c9c9c9;
+  color: #000000;
 }
 
 #disk {
-  background: #F5C2E7;
+  background: #404040;
+  color: #ffffff;
 }
 
 #temperature {
-  background: #F8BD96;
-}
-
-#workspaces {
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
-  margin: 6px 5px;
-  padding: 0px 6px;
+  background: #c9c9c9;
+  color: #000000;
 }
 
 #workspaces button {
-  color: #B5E8E0;
-  background: transparent;
-  padding: 4px 4px;
+  color: #ffffff;
+  background: #404040;
+  border-radius: 10px;
+  margin: 6px 5px;
+  padding: 0px 6px;
   transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
 }
 
-#workspaces button.occupied {
-  color: #A6E3A1;
-}
-
 #workspaces button.active {
-  color: #89B4FA;
-  text-shadow: 0 0 4px #ABE9B3;
+  background: #ffffff;
+  color: #000000;
 }
 
 #workspaces button:hover {
-  color: #89B4FA;
+  background: #ffffff;
+  color: #000000;
 }
-
-/* #workspaces button.active:hover {} */
 
 #taskbar {
   background: transparent;
@@ -116,35 +112,28 @@ window#waybar.hidden {
 }
 
 #taskbar button.active {
-  background: rgba(34, 36, 54, 0.5);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 #taskbar button:hover {
-  background: rgba(34, 36, 54, 0.5);
-}
-
-#idle_inhibitor {
-  background: #B5E8E0;
-  padding-right: 15px;
+  background: rgba(255, 255, 255, 0.25);
 }
 
 #pulseaudio {
-  color: #1A1826;
-  background: #F5E0DC;
+  background: #c9c9c9;
+  color: #000000;
+}
+
+#network {
+  background: #404040;
+  color: #FFFFFF;
 }
 
 #battery {
-  background: rgba(0, 0, 0, 0.4);
+  background: #404040;
   color: #FFFFFF;
   padding-right: 15px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   margin-right: 5px;
-}
-
-@keyframes blink {
-  to {
-    background-color: #BF616A;
-    color: #B5E8E0;
-  }
 }

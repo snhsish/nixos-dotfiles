@@ -14,12 +14,48 @@
 - Kitty (Terminal): `/.config/kitty`
 - Waybar (Topbar): `/.config/waybar`
 - Bash (shell): `.bashrc`
+- Wallpapers: `/walls`
 - Git (SCM): `.gitconfig`
 
+## Shortcuts & Keybinds
+- `SUPER + ENTER` = Open New Terminal Window
+- `SUPER + Q` = Close Current Window
+- `SUPER + E` = File Manager
+
+- `SUPER + W` = Move Current Window Up
+- `SUPER + A` = Move Current Window Left
+- `SUPER + S` = Move Current Window Down
+- `SUPER + D` = Move Current Window Right
+- `SUPER + J` = Switch 2 Concurrent Window Orientation (Vertically / Horizontally)
+
+- `SUPER + WS(n)` = Switch to Workspace n
+- `SUPER + SHIFT + WS(n)` = Move Current Window to Workspace n
+
+- `CTRL + SHIFT + A` = Arduino
+- `CTRL + SHIFT + B` = Brave
+- `CTRL + SHIFT + D` = Discord
+- `CTRL + SHIFT + Q` = VSCode
+- `CTRL + SHIFT + S` = Spotify
+
+- `SUPER + SHIFT + S` = Selective Screenshot
+- `SUPER + SHIFT + R` = Selective Screen Recording
 
 ## Previews
-I have uploaded some preview videos on GDrive:
-[snehasishcodes/NixPreviews](https://drive.google.com/drive/folders/1Rv7KiijocrP-7EmO6UeHcz6-hwtMLh6f)
+
+### Base
+![base](/previews/base.png)
+
+### Terminal
+![terminal](/previews/terminal.png)
+
+### Spotify & Cava
+![spotify](/previews/spotify.png)
+
+### btop & pipes.sh
+![pipes](/previews/pipes.png)
+
+### Discord & Brave
+![discord](/previews/discord.png)
 
 ## Discord Server
 If you're here. you definitely wanna join my Discord Server:

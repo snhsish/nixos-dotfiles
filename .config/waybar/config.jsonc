@@ -6,6 +6,7 @@
   "exclusive": true,
   "passthrough": false,
   "gtk-layer-shell": true,
+  /* === Modules Order === */
   "modules-left": [
     "custom/nixos",
     "clock",
@@ -19,13 +20,15 @@
   ],
   "modules-right": [
     "wlr/taskbar",
-    "idle_inhibitor",
+    "network",
     "pulseaudio",
     "battery"
   ],
-  // modules left
+  /* === Modules Left === */
   "custom/nixos": {
     "format": "",
+    "all-outputs": true,
+    "active-first": true,
     "tooltip": true,
     "tooltip-format": "{}",
     "exec": "echo NixOS $(grep '^VERSION=' /etc/os-release | cut -d= -f2 | tr -d '\"')",
@@ -62,9 +65,9 @@
       ""
     ]
   },
-  // modules center
+  /* === Modules Center === */
   "hyprland/workspaces": {
-    "format": "{icon}",
+    "format": "{id}",
     "format-icons": {
       "default": "",
       "active": ""
@@ -76,7 +79,7 @@
     "all-outputs": true,
     "show-special": true
   },
-  //modules right
+  /* === Modules Right === */
   "wlr/taskbar": {
     "format": "{icon}",
     "all-outputs": true,
@@ -88,12 +91,14 @@
       "rofi"
     ]
   },
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-      "activated": "",
-      "deactivated": ""
-    }
+  "network": {
+    "format-wifi": "  {essid}",
+    "format-ethernet": "󰈁  {ifname}",
+    "format-disconnected": "󰤭  Disconnected",
+    "tooltip-format": "{ifname} ({signalStrength}%)",
+    "max-length": 10,
+    "interval": 5,
+    "on-click": "kitty -e nmtui"
   },
   "pulseaudio": {
     "format": "{volume}% {icon}",

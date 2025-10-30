@@ -115,7 +115,9 @@ in {
     packages = with pkgs; [
       brave
       discord
+      vencord
       spotify
+      obs-studio
     ];
     shell = pkgs.zsh;
   };
@@ -179,10 +181,13 @@ in {
     # utils
     git
     gh
+    n8n
+    ollama
 
     nodejs_24
     jdk # java dev kit for android app dev
     android-tools
+    cloudflared
 
     pnpm
     fastfetch
@@ -193,6 +198,7 @@ in {
     neovim
     vscode
     arduino
+    arduino-cli
 
     # screen (snip + clip)
     grim # screenshot
@@ -234,6 +240,10 @@ in {
 
     # anime
     ani-cli
+
+    # file manager
+    kdePackages.dolphin
+    kdePackages.qtsvg
   ];
 
   # fonts
