@@ -4,58 +4,18 @@
 
 <h1 align="center">My NixOS Dotfiles</h1>
 
-<p align="center">NixOS 25.11 Flake (Xantusia) with Hyprland</p>
+<p align="center">NixOS 25.05 stable (Warbler) with Hyprland</p>
 
 ---
 
 ## Configs
 - Nix (OS): `/nix`
-- Hyprland (WM): `/hypr`
-- Kitty (Terminal): `/kitty`
-- Waybar (Topbar): `/waybar`
-- zsh: `.zshrc`
+- Hyprland (WM): `/.config/hypr`
+- Kitty (Terminal): `/.config/kitty`
+- Waybar (Topbar): `/.config/waybar`
+- Bash (shell): `.bashrc`
 - Wallpapers: `/walls`
 - Git (SCM): `.gitconfig`
-
-## Key Features
-
-### Desktop Environment
-
-| Component | Description |
-|-----------|-------------|
-| Window Manager | Hyprland |
-| Terminal Emulator | Kitty |
-| Shell | zsh |
-| zsh Theme | power-level-10k |
-| Status Bar | Waybar |
-| Launcher | Wofi |
-| Login Manager | SDDM |
-| Dynamic Colors | pywal |
-| Wallpapers | swww |
-| Screenshotting | grim |
-| Screen recording | wf-recorder |
-
-### Development Stack
-
-| Category | Items |
-|-----------|-------------|
-| Languages | Node.js 24, Python 3 |
-| Editors   | VSCode, Neovim, Arduino |
-| CLIs  | ollama, pnpm, n8n, git, gh |
-
-### Apps
-
-| Category | Names |
-|-----------|-------------|
-| Browsers | Brave |
-| Social | Discord |
-| Music & Players | Spotify |
-| File Manager | dolphin |
-
-### Additional features & info
-- Nix Flakes
-- Docker enabled
-- devShells enabled (`nix develop`)
 
 ## Shortcuts & Keybinds
 - `SUPER + ENTER` = Open New Terminal Window
@@ -82,17 +42,20 @@
 
 ## Previews
 
-### Home
-![base](/previews/home.png)
+### Base
+![base](/previews/base.png)
+
+### Terminal
+![terminal](/previews/terminal.png)
 
 ### Spotify & Cava
 ![spotify](/previews/spotify.png)
 
-### VSCode
-![vscode](/previews/vscode.png)
+### btop & pipes.sh
+![pipes](/previews/pipes.png)
 
-### Terminals
-![terminal](/previews/terminals.png)
+### Discord & Brave
+![discord](/previews/discord.png)
 
 ## Discord Server
 If you're here. you definitely wanna join my Discord Server:

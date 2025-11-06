@@ -1,0 +1,133 @@
+{
+  "layer": "top",
+  "position": "top",
+  "autohide": true,
+  "autohide-blocked": false,
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+
+  /* === Modules Order === */
+  "modules-left": [
+    "custom/nixos",
+    "clock",
+    "cpu",
+    "memory",
+    "disk",
+    "temperature"
+  ],
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
+  "modules-right": [
+    "wlr/taskbar",
+    "network",
+    "pulseaudio",
+    "battery"
+  ],
+
+  /* === Modules Left === */
+  "custom/nixos": {
+    "format": "",
+    "all-outputs": true,
+    "active-first": true,
+    "tooltip": true,
+    "tooltip-format": "{}",
+    "exec": "echo NixOS $(grep '^VERSION=' /etc/os-release | cut -d= -f2 | tr -d '\"')",
+    "on-click": "wofi --show drun"
+  },
+  "clock": {
+    "timezone": "Asia/Kolkata",
+    "format": "{:%a %d %H:%M}",
+    "tooltip-format": "{calendar}",
+    "calendar": {
+      "mode": "month"
+    }
+  },
+  "cpu": {
+    "format": "{usage}% ",
+    "tooltip": true,
+    "tooltip-format": "CPU Usage: {usage}%\nCores: {cores}"
+  },
+  "memory": {
+    "format": "{}% 󰍛",
+    "tooltip": true,
+    "tooltip-format": "RAM Usage: {used} / {total} ({percentage}%)"
+  },
+  "disk": {
+    "format": "{percentage_free}% ",
+    "tooltip": true,
+    "tooltip-format": "Space free: {free} / {total} ({percentage_free}%)"
+  },
+  "temperature": {
+    "format": "{temperatureC}°C {icon}",
+    "tooltip": true,
+    "tooltip-format": "Temperature: {temperatureC}°C",
+    "format-icons": [
+      ""
+    ]
+  },
+
+
+  /* === Modules Center === */
+  "hyprland/workspaces": {
+    "format": "{id}",
+    "format-icons": {
+      "default": "",
+      "active": ""
+    },
+    "persistent-workspaces": {
+      "*": 2
+    },
+    "disable-scroll": true,
+    "all-outputs": true,
+    "show-special": true
+  },
+
+  /* === Modules Right === */
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "all-outputs": true,
+    "active-first": true,
+    "tooltip-format": "{name}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "ignore-list": [
+      "rofi"
+    ]
+  },
+  "network": {
+    "format-wifi": "  {essid}",
+    "format-ethernet": "󰈁  {ifname}",
+    "format-disconnected": "󰤭  Disconnected",
+    "tooltip-format": "{ifname} ({signalStrength}%)",
+    "max-length": 10,
+    "interval": 5,
+    "on-click": "kitty -e nmtui"
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-muted": " {format_source}",
+    "format-icons": {
+      "default": [
+        "",
+        ""
+      ]
+    }
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "<span size='13000' foreground='#a6e3a1'>{icon} </span> {capacity}%",
+    "format-warning": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {capacity}%",
+    "format-critical": "<span size='13000' foreground='#E38C8F'>{icon} </span> {capacity}%",
+    "format-charging": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
+    "format-plugged": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
+    "format-alt": "<span size='13000' foreground='#B1E3AD'>{icon} </span> {time}",
+    "format-full": "<span size='13000' foreground='#B1E3AD'> </span>{capacity}%",
+    "format-icons": ["", "", "", "", ""],
+    "tooltip-format": "{time}"
+  }
+}

@@ -1,28 +1,31 @@
-{ config, pkgs, lib, inputs, lanzaboote, hyprland, ... }:
-{
+{ config, pkgs, lib, ... }:
+
+# variables
+let
+  lanzaboote = import (builtins.fetchTarball "https://github.com/nix-community/lanzaboote/archive/refs/tags/v0.4.2.tar.gz");
+  flake-compat = builtins.fetchTarball "https://github.com/edolstra/flake-compat/archive/master.tar.gz";
+  hyprland = (import flake-compat {
+    src = builtins.fetchTarball "https://github.com/hyprwm/Hyprland/archive/main.tar.gz";
+  }).defaultNix;
+
+in {
   imports =
     [
       ./hardware-configuration.nix
       lanzaboote.nixosModules.lanzaboote
     ];
 
-  # nix settings
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # nix garbage collector
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 5d";
-  };
+  # NTFS Support
+  boot.supportedFilesystems = [ "ntfs" ];
 
   # bootloader
-  boot.supportedFilesystems = [ "ntfs" ];
-  boot.loader.systemd-boot.enable = lib.mkForce false; # lanzaboote replaces systemd-boot so force it off
+  # boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = lib.mkForce false; # Lanzaboote replaces systemd-boot so force it off
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/var/lib/sbctl";  # location of sbctl generated keys
   };
+
   boot.loader.efi.canTouchEfiVariables = true;
 
   # GRUB
@@ -31,16 +34,17 @@
   #  boot.loader.grub.efiSupport = true;
   #  boot.loader.grub.useOSProber = true;
 
-  # network
+  networking.hostName = "snehasish-nixos"; # hostname (using separated - only)
   
-  # hostname (seperate only using -)
-  networking.hostName = "snehasish-nixos";
-  # enable network manager
+  # enable networking
   networking.networkmanager.enable = true;
-  # time zone
+
+  # time zone.
   time.timeZone = "Asia/Kolkata";
-  # internationalisation properties.
+
+  # Select internationalisation properties.
   i18n.defaultLocale = "en_IN";
+
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_IN";
     LC_IDENTIFICATION = "en_IN";
@@ -53,14 +57,12 @@
     LC_TIME = "en_IN";
   };
 
-  # enabling the X11 windowing system
+  # Enable the X11 windowing system.
   services.xserver.enable = true;
-  # set default display manager to hyprland
   services.displayManager = {
       defaultSession = "hyprland";
   };
 
-  # postgres
   #services.postgresql = {
   #  enable = true;
   #  package = pkgs.postgresql_17_jit;
@@ -72,7 +74,7 @@
   #  '';
   #};
 
-  # hyprland
+  # Hyprland
   programs.hyprland = {
     enable = true;
     package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -82,11 +84,11 @@
   # Waybar for Hyprland
   programs.waybar.enable = true;
 
-  # enabling the GNOME desktop env
+  # Enable the GNOME Desktop Environment.
   #  services.xserver.displayManager.gdm.enable = true;
   #  services.xserver.desktopManager.gnome.enable = true;
 
-  # configuring keymap in X11
+  # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
@@ -113,6 +115,7 @@
     packages = with pkgs; [
       brave
       discord
+      vencord
       spotify
       obs-studio
     ];
@@ -121,7 +124,7 @@
 
   users.defaultUserShell = pkgs.zsh;
 
-  # zsh
+  # Enable zsh
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -164,7 +167,6 @@
 
     # wallpaper
     swww
-    pywal
     sddm-astronaut # for lockscreen
 
     # terminal
@@ -183,8 +185,6 @@
     ollama
 
     nodejs_24
-    python3
-    unzip
     jdk # java dev kit for android app dev
     android-tools
     cloudflared
@@ -237,8 +237,6 @@
     cbonsai
     cowsay
     pipes
-    ripgrep
-    fd
 
     # anime
     ani-cli
@@ -252,7 +250,7 @@
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     noto-fonts
-    noto-fonts-color-emoji
+    noto-fonts-emoji
   ];
 
   # Docker
@@ -281,6 +279,5 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # do not change (compatibility lock, not current version)
   system.stateVersion = "25.05";
 }

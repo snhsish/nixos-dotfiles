@@ -23,7 +23,7 @@ alias nixdeletepfs="sudo nix-env --delete-generations old"
 alias nixgarbagecollect="sudo nix-collect-garbage"
 
 # Alias for editing config files
-alias nixconfig="sudo nvim /etc/nixflake"
+alias nixconfig="sudo nvim /etc/nixos"
 alias hyprconfig="code ~/.config/hypr"
 alias kittyconfig="code ~/.config/kitty"
 alias waybarconfig="code ~/.config/waybar"
