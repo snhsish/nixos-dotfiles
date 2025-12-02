@@ -1,4 +1,7 @@
+@import "/home/snehasish/.cache/wal/colors-waybar.css";
+
 * {
+  color: @foreground;
   border: none;
   font-family: "JetbrainsMono Nerd Font";
   font-size: 15px;
@@ -31,9 +34,9 @@ window#waybar.hidden {
 }
 
 #custom-nixos {
-  background-color: #404040;
+  background-color: @background;
   /*#5376C3*/
-  color: #a5b6ff;
+  color: @foreground;
   font-size: 20px;
   padding-right: 15px;
 }
@@ -54,33 +57,33 @@ window#waybar.hidden {
 }
 
 #clock {
-  background: #c9c9c9;
-  color: #000000;
+  background: @color15;
+  color: @color0;
 }
 
 #cpu {
-  background: #404040;
-  color: #ffffff;
+  background: @color0;
+  color: @color15;
 }
 
 #memory {
-  background: #c9c9c9;
-  color: #000000;
+  background: @color15;
+  color: @color0;
 }
 
 #disk {
-  background: #404040;
-  color: #ffffff;
+  background: @color0;
+  color: @color15;
 }
 
 #temperature {
-  background: #c9c9c9;
-  color: #000000;
+  background: @color15;
+  color: @color0;
 }
 
 #workspaces button {
-  color: #ffffff;
-  background: #404040;
+  color: @foreground;
+  background: @background;
   border-radius: 10px;
   margin: 6px 5px;
   padding: 0px 6px;
@@ -88,13 +91,12 @@ window#waybar.hidden {
 }
 
 #workspaces button.active {
-  background: #ffffff;
-  color: #000000;
+  border: 1px solid @foreground;
 }
 
 #workspaces button:hover {
-  background: #ffffff;
-  color: #000000;
+  background: @foreground;
+  color: @background;
 }
 
 #taskbar {
@@ -112,26 +114,27 @@ window#waybar.hidden {
 }
 
 #taskbar button.active {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(17, 27, 31, 0.25);
 }
 
 #taskbar button:hover {
-  background: rgba(255, 255, 255, 0.25);
-}
-
-#pulseaudio {
-  background: #c9c9c9;
-  color: #000000;
+  background: rgba(209, 233, 242, 0.25);
 }
 
 #network {
-  background: #404040;
-  color: #FFFFFF;
+  background: @color0;
+  color: @color15;
 }
 
+#pulseaudio {
+  background: @color15;
+  color: @color0;
+}
+
+
 #battery {
-  background: #404040;
-  color: #FFFFFF;
+  background: @color0;
+  color: @color15;
   padding-right: 15px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
