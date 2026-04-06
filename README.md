@@ -8,6 +8,10 @@
 
 ---
 
+## [Previews](https://writings.snehasish.xyz/nixos)
+
+To preview all of my rices, you can visit: [writings.snehasish.xyz/nixos](https://writings.snehasish.xyz/nixos)
+
 ## Configs
 - Nix (OS): `/nix`
 - Hyprland (WM): `/hypr`
